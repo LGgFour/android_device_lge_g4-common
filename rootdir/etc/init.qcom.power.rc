@@ -15,8 +15,8 @@ on boot
     chmod 0664 /dev/cpuset/camera-daemon/tasks
 
 on enable-low-power
-    # Set idle GPU to 300 Mhz
-    write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
+    # Set idle GPU to 180 Mhz
+    write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 5
 
 on charger
     # disable FPS clk
