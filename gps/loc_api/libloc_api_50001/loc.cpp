@@ -328,7 +328,6 @@ static int loc_init(GpsCallbacks* callbacks)
     loc_afw_data.adapter->setXtraUserAgent();
 
     if(retVal) {
-        LOC_LOGE("loc_eng_init() fail!");
         goto err;
     }
 
@@ -743,7 +742,7 @@ static int  loc_agps_open_with_apniptype(const char* apn, ApnIpType apnIpType)
             bearerType = AGPS_APN_BEARER_IPV4V6;
             break;
         default:
-            bearerType = AGPS_APN_BEARER_IPV4;
+            bearerType = AGPS_APN_BEARER_INVALID;
             break;
     }
 

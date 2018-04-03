@@ -205,8 +205,10 @@ void loc_logger_init(unsigned long debug, unsigned long timestamp)
 #ifdef TARGET_BUILD_VARIANT_USER
    // force user builds to 2 or less
    if (loc_logger.DEBUG_LEVEL > 2) {
-       loc_logger.DEBUG_LEVEL = 2;
+       loc_logger.DEBUG_LEVEL = 0;
    }
+   else
+       loc_logger.DEBUG_LEVEL = 0;
 #endif
    loc_logger.TIMESTAMP   = timestamp;
 }

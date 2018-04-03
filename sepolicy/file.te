@@ -5,7 +5,27 @@ type cust_file, file_type, data_file_type;
 type mpt_file, file_type, data_file_type;
 type multimedia_data_file, file_type, data_file_type;
 type sns_file, file_type, data_file_type;
+type thermal_socket_device, file_type;
+type cam_file, file_type;
+type shell_ex, exec_type, file_type;
+type ril_data_file, file_type, data_file_type;
+type system_crypt_file, file_type, data_file_type;
 
+type vendor_fs, fs_type, sysfs_type;
+type fs, fs_type, sysfs_type;
 type rmt_debugfs, fs_type;
+type sysfs_performance, sysfs_type, fs_type;
+type health, file_type;
 
 type rtc_sysfs, fs_type;
+type proc_irq, fs_type;
+type nv_data_file, file_type;
+type proc_touchpanel, fs_type;
+
+
+# type for devstart
+type sysfs_audio, sysfs_type, fs_type;
+
+# HAL types
+type display_data_file, file_type, data_file_type;
+

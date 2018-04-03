@@ -61,44 +61,18 @@ static int loc_api_server_proc_init(void *context)
     loc_api_server_msgqid = loc_eng_dmn_conn_glue_msgget(global_loc_api_q_path, O_RDWR);
     //change mode/group for the global_loc_api_q_path pipe
     int result = chmod (global_loc_api_q_path, 0660);
-    if (result != 0)
-    {
-        LOC_LOGE("failed to change mode for %s, error = %s\n", global_loc_api_q_path, strerror(errno));
-    }
-
     struct group * gps_group = getgrnam("gps");
     if (gps_group != NULL)
     {
        result = chown (global_loc_api_q_path, -1, gps_group->gr_gid);
-       if (result != 0)
-       {
-          LOC_LOGE("chown for pipe failed, pipe %s, gid = %d, result = %d, error = %s\n",
-                   global_loc_api_q_path, gps_group->gr_gid, result, strerror(errno));
-       }
     }
-    else
-    {
-       LOC_LOGE("getgrnam for gps failed, error code = %d\n",  errno);
-    }
-
     loc_api_resp_msgqid = loc_eng_dmn_conn_glue_msgget(global_loc_api_resp_q_path, O_RDWR);
 
     //change mode/group for the global_loc_api_resp_q_path pipe
     result = chmod (global_loc_api_resp_q_path, 0660);
-    if (result != 0)
-    {
-        LOC_LOGE("failed to change mode for %s, error = %s\n", global_loc_api_resp_q_path, strerror(errno));
-    }
-
     if (gps_group != NULL)
     {
        result = chown (global_loc_api_resp_q_path, -1, gps_group->gr_gid);
-       if (result != 0)
-       {
-          LOC_LOGE("chown for pipe failed, pipe %s, gid = %d, result = %d, error = %s\n",
-                   global_loc_api_resp_q_path,
-                   gps_group->gr_gid, result, strerror(errno));
-       }
     }
 
     quipc_msgqid = loc_eng_dmn_conn_glue_msgget(global_quipc_ctrl_q_path, O_RDWR);

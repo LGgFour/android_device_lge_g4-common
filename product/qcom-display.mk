@@ -1,3 +1,4 @@
+# Display
 PRODUCT_PACKAGES += \
     copybit.msm8992 \
     gralloc.msm8992 \

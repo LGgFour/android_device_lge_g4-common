@@ -7,3 +7,14 @@ allow system_server rtc_sysfs:dir { search };
 allow system_server rtc_sysfs:file { read open getattr };
 
 allow system_server mpctl_socket:dir { search };
+
+allow system_server proc_touchpanel:file rw_file_perms;
+allow system_server proc_touchpanel:dir { search };
+
+allow system_server sensors_persist_file:file { read getattr open };
+allow system_server sensors_persist_file:dir { open search };
+
+allow system_server sysfs_usb_supply:dir search;
+allow system_server sysfs_usb_supply:file { read getattr open };
+
+allow system_server system_data_file:sock_file write;

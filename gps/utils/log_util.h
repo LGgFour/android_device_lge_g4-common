@@ -98,11 +98,11 @@ extern char* get_timestamp(char* str, unsigned long buf_size);
   if that value remains unchanged, it means gps.conf did not
   provide a value and we default to the initial value to use
   Android's logging levels*/
-#define IF_LOC_LOGE if((loc_logger.DEBUG_LEVEL >= 1) && (loc_logger.DEBUG_LEVEL <= 5))
+#define IF_LOC_LOGE if((loc_logger.DEBUG_LEVEL >= 0) && (loc_logger.DEBUG_LEVEL <= 0))
 
-#define IF_LOC_LOGW if((loc_logger.DEBUG_LEVEL >= 2) && (loc_logger.DEBUG_LEVEL <= 5))
+#define IF_LOC_LOGW if((loc_logger.DEBUG_LEVEL >= 0) && (loc_logger.DEBUG_LEVEL <= 0))
 
-#define IF_LOC_LOGI if((loc_logger.DEBUG_LEVEL >= 3) && (loc_logger.DEBUG_LEVEL <= 5))
+#define IF_LOC_LOGI if((loc_logger.DEBUG_LEVEL >= 0) && (loc_logger.DEBUG_LEVEL <= 0))
 
 #define IF_LOC_LOGD if((loc_logger.DEBUG_LEVEL >= 4) && (loc_logger.DEBUG_LEVEL <= 5))
 

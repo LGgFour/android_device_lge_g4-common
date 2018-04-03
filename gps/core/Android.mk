@@ -1,7 +1,6 @@
 ifneq ($(BUILD_TINY_ANDROID),true)
 
 LOCAL_PATH := $(call my-dir)
-
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := libloc_core
@@ -50,6 +49,8 @@ LOCAL_COPY_HEADERS:= \
     LocAdapterProxyBase.h
 
 LOCAL_PRELINK_MODULE := false
+
+LOCAL_LDLIBS := -llog
 
 include $(BUILD_SHARED_LIBRARY)
 
