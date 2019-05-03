@@ -50,6 +50,19 @@ PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/usb_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/default_volume_tables.xml
 
+# AptX
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.bt.enableAptXHD=true \
+    persist.service.btui.use_aptx=1 \
+    persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac \
+    persist.vendor.btstack.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac
+
+PRODUCT_COPY_FILES += \
+    device/lge/g4-common/aptx/lib/libaptX_encoder.so:system/lib/libaptX_encoder.so \
+    device/lge/g4-common/aptx/lib/libaptXHD_encoder.so:system/lib/libaptXHD_encoder.so \
+    device/lge/g4-common/aptx/lib64/libaptX_encoder.so:system/lib64/libaptX_encoder.so \
+    device/lge/g4-common/aptx/lib64/libaptXHD_encoder.so:system/lib64/libaptXHD_encoder.so
+
 # Bluetooth
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl \
