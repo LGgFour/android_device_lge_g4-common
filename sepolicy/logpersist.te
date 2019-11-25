@@ -1,1 +1,3 @@
-allow logpersist cache_file:dir { open read write };
+# debug boot logger
+allow logpersist cache_file:file { append getattr open read };
+allow logpersist cache_file:dir { open read write search add_name };

@@ -81,9 +81,8 @@ on fs
     mount_all fstab.qcom
 
     # debug boot process
-    rm /cache/boot_lc_full.txt
-    rm /cache/boot_lc_crash.txt
-    rm /cache/boot_lc_kernel.txt
+    rm -rf /cache/debug
+    mkdir /cache/debug 0770 system root
     start boot_lc
     start boot_lc_kernel
     start boot_lc_crash
@@ -1083,23 +1082,20 @@ service lge-sensor-sh /system/vendor/bin/init.msm8992.sensor.sh
     seclabel u:r:sensors:s0
 # start sensor daemon as core class [END]
 
-service boot_lc /system/bin/logcat -b all -D -f /cache/boot_lc_full.txt
-    class main
-    user root
+service boot_lc /system/bin/logcat -b all -D -f /cache/debug/boot_lc_full.txt
+    user system
     group root system
     disabled
     oneshot
 
-service boot_lc_crash /system/bin/logcat -b crash -D -f /cache/boot_lc_crash.txt
-    class main
-    user root
-   group root system
+service boot_lc_crash /system/bin/logcat -b crash -D -f /cache/debug/boot_lc_crash.txt
+    user system
+    group root system
     disabled
     oneshot
 
-service boot_lc_kernel /system/bin/logcat -b kernel -D -f /cache/boot_lc_kernel.txt
-    class main
-   user root
+service boot_lc_kernel /system/bin/logcat -b kernel -D -f /cache/debug/boot_lc_kernel.txt
+    user system
     group root system
     disabled
     oneshot
