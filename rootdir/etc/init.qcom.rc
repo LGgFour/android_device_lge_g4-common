@@ -83,9 +83,6 @@ on fs
     # debug boot process
     rm -rf /cache/debug
     mkdir /cache/debug 0770 system root
-    start boot_lc
-    start boot_lc_kernel
-    start boot_lc_crash
 
 on init
     # ZRAM setup
@@ -469,6 +466,11 @@ on property:persist.service.criticaltemp=0
     write /sys/devices/virtual/thermal/thermal_zone14/ctrl_crit_temp 0
 
 on post-fs
+    # start boot debugger
+    start boot_lc
+    start boot_lc_kernel
+    start boot_lc_crash
+
     #change permissions on vmallocinfo so we can grab it from bugreports
     chown root log /proc/vmallocinfo
     chmod 0440 /proc/vmallocinfo
