@@ -262,14 +262,4 @@ $(QCRIL_DB_BASE): $(LOCAL_INSTALLED_MODULE)
 
 ALL_DEFAULT_INSTALLED_MODULES += $(QCRIL_DB_BASE)
 
-MEDIA := /system/media
-MEDIA_BASE := $(TARGET_OUT_PRODUCT)/media
-$(MEDIA_BASE): $(LOCAL_INSTALLED_MODULE)
-	@echo "Creating MEDIA symlink: $@"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf $(MEDIA) $(MEDIA_BASE)
-
-ALL_DEFAULT_INSTALLED_MODULES += $(MEDIA_BASE)
-
 endif
