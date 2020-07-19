@@ -334,7 +334,7 @@ PRODUCT_COPY_FILES += \
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl
- 
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/sensors/sensor_def_common.conf:system/etc/sensors/sensor_def_common.conf \
     $(LOCAL_PATH)/sensors/sensor_def_variable.conf:system/etc/sensors/sensor_def_variable.conf \
@@ -348,7 +348,8 @@ PRODUCT_PACKAGES += \
     libshim_cameraclient \
     libqsap_shim \
     libfence_shim \
-    ims_rtp_shim
+    ims_rtp_shim \
+    slim_shim
 
 # System properties
 -include $(LOCAL_PATH)/system_prop.mk
