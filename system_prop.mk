@@ -175,3 +175,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.hwui.renderer=opengl
 
+# OTA server
+PRODUCT_PROPERTY_OVERRIDES += \
+    lineage.updater.uri=http://sfxota.binbash.rocks:8009/e-os/pie/api/v1/{device}/{type}/{incr}
