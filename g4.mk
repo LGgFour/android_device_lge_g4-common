@@ -397,5 +397,10 @@ PRODUCT_COPY_FILES += \
 
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4339/device-bcm.mk)
 
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:/system/vendor/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini
+
+# Backup
+PRODUCT_PACKAGES += \
+    Seedvault
