@@ -117,9 +117,12 @@ PRODUCT_PACKAGES += \
 
 # F-droid
 WITH_FDROID := true
+FDROID_EXTRA_REPOS := true
 PRODUCT_PACKAGES += \
     F-Droid \
-    FDroidPrivilegedExtension
+    FDroidPrivilegedExtension \
+    additional_repos.xml \
+    AuroraStore
 
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(LOCAL_PATH)/config.fs
