@@ -402,5 +402,5 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:/system/vendor/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini
 
 # Backup
-PRODUCT_PACKAGES += \
-    Seedvault
+#PRODUCT_PACKAGES += \
+#    Seedvault
