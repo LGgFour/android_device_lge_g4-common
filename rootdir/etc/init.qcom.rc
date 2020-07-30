@@ -81,7 +81,9 @@ on fs
     mount_all fstab.qcom
 
     # debug boot process
-    rm -rf /cache/debug
+    rm /cache/debug/boot_lc_crash.txt
+    rm /cache/debug/boot_lc_full.txt
+    rm /cache/debug/boot_lc_kernel.txt
     mkdir /cache/debug 0770 system root
 
 on init
@@ -949,7 +951,7 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
 
 #start camera server as daemon
 service qcamerasvr /system/vendor/bin/mm-qcamera-daemon
-    class late_start
+    class main
     user camera
     group camera system inet input graphics
     writepid /dev/cpuset/system-background/tasks
