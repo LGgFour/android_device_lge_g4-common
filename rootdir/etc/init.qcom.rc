@@ -81,7 +81,9 @@ on fs
     mount_all fstab.qcom
 
     # debug boot process
-    rm -rf /cache/debug
+    rm /cache/debug/boot_lc_crash.txt
+    rm /cache/debug/boot_lc_full.txt
+    rm /cache/debug/boot_lc_kernel.txt
     mkdir /cache/debug 0770 system root
 
 on init
