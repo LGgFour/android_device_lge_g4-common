@@ -16,6 +16,10 @@
 
 $(call inherit-product-if-exists, vendor/lge/g4-common/g4-common-vendor.mk)
 
+# APEX
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/ld.config.txt:$(TARGET_COPY_OUT_SYSTEM)/etc/swcodec/ld.config.txt
+
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
@@ -89,7 +93,7 @@ PRODUCT_PACKAGES += \
 TARGET_PROVIDES_CONSUMERIR_HAL := true
 PRODUCT_PACKAGES += \
     android.hardware.ir@1.0-impl \
-    consumerir.msm8992 
+    consumerir.msm8992
 
 # Display
 PRODUCT_PACKAGES += \
@@ -194,7 +198,7 @@ PRODUCT_PACKAGES += \
 
 # LiveDisplay
 PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@1.0-service-legacymm
+    vendor.lineage.livedisplay@2.0-service-sysfs
 
 # MP-CTL
 PRODUCT_PACKAGES += \
