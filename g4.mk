@@ -123,7 +123,8 @@ PRODUCT_PACKAGES += \
 WITH_FDROID := true
 PRODUCT_PACKAGES += \
     F-Droid \
-    FDroidPrivilegedExtension
+    F-DroidPrivilegedExtension \
+    additional_repos.xml
 
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(LOCAL_PATH)/config.fs
