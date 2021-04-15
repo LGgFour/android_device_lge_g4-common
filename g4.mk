@@ -417,3 +417,6 @@ PRODUCT_COPY_FILES += \
 # Backup
 #PRODUCT_PACKAGES += \
 #    Seedvault
+
+# Enable extendrom
+$(call inherit-product-if-exists, vendor/extendrom/config/common.mk)
