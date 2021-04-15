@@ -32,6 +32,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     audio_hal.period_size=192 \
     ro.audio.flinger_standbytime_ms=300 \
     use.voice.path.for.pcm.voip=false \
+    ro.config.media_vol_steps=25 \
+    ro.config.vc_call_vol_steps=7
 
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -40,13 +42,26 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.bt.bdaddr_path="/data/misc/bluetooth/bdaddr" \
     persist.bt.enableAptXHD=true
 
+# Boot animation
+TARGET_SCREEN_HEIGHT := 2560
+TARGET_SCREEN_WIDTH := 1440
+TARGET_BOOT_ANIMATION_RES := 1440
+
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
     camera.hal1.packagelist=com.skype.raider,com.whatsapp,com.instagram.android \
     ro.qc.sdk.camera.facialproc=false \
     ro.qc.sdk.gestures.camera=false \
     camera2.portability.force_api=1 \
-    ro.factorytest=0
+    persist.camera.video.ubwc=0 \
+    persist.camera.HAL3.enabled=1 \
+    persist.ts.postmakeup=false \
+    persist.ts.rtmakeup=false \
+    camera.no_navigation_bar=true \
+    ro.factorytest=0 \
+# Enable low power video mode for 4K encode
+    vidc.debug.perf.mode=2 \
+    vidc.enc.dcvs.extra-buff-count=2
 
 # DRM
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -64,8 +79,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Dexopt (try not to use big cores during dexopt)
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.boot-dex2oat-threads=4 \
-    dalvik.vm.dex2oat-threads=2 \
-    dalvik.vm.image-dex2oat-threads=4
+    dalvik.vm.dex2oat-threads=4 \
+    dalvik.vm.image-dex2oat-threads=4 \
+    dalvik.vm.image-dex2oat-filter=speed \
+    ro.vendor.qti.am.reschedule_service=true
 
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -74,21 +91,26 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qualcomm.cabl=2
 
 # Properties to improve rendering
+    debug.composition.type=gpu \
+    debug.cpurend.vsync=false \
     debug.enable.sglscale=1 \
+    debug.enabletr=true \
+    debug.egl.profiler=1 \
     debug.egl.hw=1 \
+    debug.overlayui.enable=1 \
+    debug.performance.tuning=1 \
     debug.sf.hw=1 \
     debug.sf.disable_hwc=0 \
     debug.sf.recomputecrop=0 \
     debug.sf.disable_backpressure=1 \
     debug.sf.latch_unsignaled=1 \
+    hw3d.force=1 \
     persist.hwc.ptor.enable=true \
-    debug.cpurend.vsync=false \
-    debug.performance.tuning=1
+    video.accelerate.hw=1
 
 # MSM8992 HAL settings
 # 196610 is decimal for 0x30002 to report major/minor versions as 3/2
 PRODUCT_PROPERTY_OVERRIDES += \
-    debug.composition.type=c2d \
     debug.mdpcomp.logs=0 \
     persist.debug.wfd.enable=1 \
     persist.demo.hdmirotationlock=false \
@@ -97,8 +119,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.mdpcomp.4k2kSplit=1 \
     persist.mdpcomp_perfhint=50 \
     persist.metadata_dynfps.disable=true \
+    persist.sys.ui.hw=1 \
     persist.sys.wfd.virtual=0 \
-    ro.opengles.version=196610
+    ro.opengles.version=196610 \
+    ro.sf.compbypass.enable=0
 
 # FIFO: enable scheduling for UI and Render threads by default
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -125,12 +149,25 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qc.sdk.izat.premium_enabled=0 \
     ro.qc.sdk.izat.service_mask=0x0
 
+# LMKD
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.lmk.low=1001 \
+    ro.lmk.medium=80 \
+    ro.lmk.critical=0 \
+    ro.lmk.critical_upgrade=false \
+    ro.lmk.upgrade_pressure=100 \
+    ro.lmk.downgrade_pressure=100 \
+    ro.lmk.kill_heaviest_task=true \
+    ro.lmk.kill_timeout_ms=100
+
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.media.treble_omx=false \
     mm.enable.qcom_parser=3379827 \
     mm.enable.smoothstreaming=true \
     media.aac_51_output_enabled=true \
+    media.stagefright.legacyencoder=true
+    media.stagefright.less-secure=true
     vidc.debug.level=1 \
     vidc.debug.perf.mode=2 \
     vidc.enc.dcvs.extra-buff-count=2 \
@@ -147,13 +184,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Perf
 PRODUCT_PROPERTY_OVERRIDES += \
+    persist.dpm.feature=1 \
     persist.timed.enable=true \
     ro.qualcomm.cabl=2 \
     ro.qualcomm.perf.cores_online=2 \
     ro.vendor.extension_library=libqti-perfd-client.so \
-    persist.dpm.feature=1 \
     ro.min_freq_0=384000 \
-    ro.min_freq_4=384000
+    ro.min_freq_4=384000 \
+    ro.vold.umsdirtyratio=50
 
 # RIL
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -171,8 +209,17 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.default_network=12 \
     ro.ril.svlte1x=false \
     ro.ril.svdo=false \
+    persist.telephony.oosisdc=false \
+    #Improve Speech Quality
+    ro.ril.enable.amr.wideband=1
+
+# RIL Powersaving
     persist.radio.add_power_save=1 \
-    persist.telephony.oosisdc=false
+    pm.sleep_mode=1 \
+    ro.ril.disable.power.collapse=0 \
+    ro.ril.fast.dormancy.rule=1 \
+    ro.ril.fast.dormancy.timeout=3 \
+    ro.mot.eri.losalert.delay=1000
 
 # Security patch level
 PRODUCT_PROPERTY_OVERRIDES += \

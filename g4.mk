@@ -16,9 +16,6 @@
 
 $(call inherit-product-if-exists, vendor/lge/g4-common/g4-common-vendor.mk)
 
-# Build with specific settings for Galaxys2-common
-$(call inherit-product, $(LOCAL_PATH)/configs/go_for_g4.mk)
-
 # APEX
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/ld.config.txt:$(TARGET_COPY_OUT_SYSTEM)/etc/swcodec/ld.config.txt
@@ -75,6 +72,13 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     libqomx_core \
     Camera2
+
+# Enable camera EIS
+# eis.enable: enables electronic image stabilization
+# is_type: sets image stabilization type
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.camera.eis.enable=1 \
+    persist.camera.is_type=4
 
 # rootless torch tile workaround
 PRODUCT_PACKAGES += \
@@ -343,7 +347,8 @@ PRODUCT_COPY_FILES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@1.0-impl
+    android.hardware.sensors@1.0-impl \
+    android.hardware.sensors@1.0-service
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/sensors/sensor_def_common.conf:system/etc/sensors/sensor_def_common.conf \
