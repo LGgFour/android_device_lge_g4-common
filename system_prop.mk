@@ -264,3 +264,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # OTA server
 PRODUCT_PROPERTY_OVERRIDES += \
     lineage.updater.uri=http://sfxota.binbash.rocks:8009/e-os/pie/api/v1/{device}/{type}/{incr}
+
+# WiFi Scan Interval (default = 15s)
+PRODUCT_PROPERTY_OVERRIDES += \
+    wifi.supplicant_scan_interval=600
