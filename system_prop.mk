@@ -261,9 +261,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.hwui.renderer=opengl
 
-# OTA server
+# custom OTA server (when not an official build)
+ifeq ($(LINEAGE_BUILDTYPE),"UNOFFICIAL")
 PRODUCT_PROPERTY_OVERRIDES += \
     lineage.updater.uri=http://sfxota.binbash.rocks:8009/e-os/pie/api/v1/{device}/{type}/{incr}
+endif
+ifeq ($(LINEAGE_BUILDTYPE),"CUSTOM")
+PRODUCT_PROPERTY_OVERRIDES += \
+    lineage.updater.uri=http://sfxota.binbash.rocks:8009/e-os/pie/api/v1/{device}/{type}/{incr}
+endif
 
 # WiFi Scan Interval (default = 15s)
 PRODUCT_PROPERTY_OVERRIDES += \
