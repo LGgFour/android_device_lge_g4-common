@@ -262,11 +262,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.hwui.renderer=opengl
 
 # custom OTA server (when not an official build)
-ifeq ($(LINEAGE_BUILDTYPE),"UNOFFICIAL")
+CURBTYPE=$(shell echo $$EOS_RELEASE_TYPE)
+ifeq ($(CURBTYPE),UNOFFICIAL)
 PRODUCT_PROPERTY_OVERRIDES += \
     lineage.updater.uri=http://sfxota.binbash.rocks:8009/e-os/pie/api/v1/{device}/{type}/{incr}
 endif
-ifeq ($(LINEAGE_BUILDTYPE),"CUSTOM")
+ifeq ($(CURBTYPE),CUSTOM)
 PRODUCT_PROPERTY_OVERRIDES += \
     lineage.updater.uri=http://sfxota.binbash.rocks:8009/e-os/pie/api/v1/{device}/{type}/{incr}
 endif
