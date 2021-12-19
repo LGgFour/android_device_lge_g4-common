@@ -177,5 +177,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # OTA server
 PRODUCT_PROPERTY_OVERRIDES += \
-    lineage.updater.uri=http://sfxota.binbash.rocks:8009/lineage/16.0/api/v1/{device}/{type}/{incr}
+    lineage.updater.uri=https://sfxota.binbash.rocks:8009/lineage/16.0/api/v1/{device}/{type}/{incr}
 
