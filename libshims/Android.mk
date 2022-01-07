@@ -69,5 +69,5 @@ LOCAL_C_INCLUDES += $(TOP)/bionic/libc
 LOCAL_C_INCLUDES += $(TOP)/bionic/libc/async_safe/include
 LOCAL_MODULE := libpthread_shim
 LOCAL_MODULE_TAGS := optional
-LOCAL_PROPRIETARY_MODULE := true
+LOCAL_VENDOR_MODULE := false
 include $(BUILD_SHARED_LIBRARY)
