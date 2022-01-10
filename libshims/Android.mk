@@ -62,7 +62,7 @@ include $(BUILD_SHARED_LIBRARY)
 # Pthread
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := pthread_shim.cpp
-LOCAL_SHARED_LIBRARIES := liblog
+LOCAL_SHARED_LIBRARIES := liblog libc
 LOCAL_C_INCLUDES := $(TOP)/bionic/libc/bionic/
 LOCAL_C_INCLUDES += $(TOP)/bionic/libstdc++/include
 LOCAL_C_INCLUDES += $(TOP)/bionic/libc
