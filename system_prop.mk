@@ -63,6 +63,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vidc.debug.perf.mode=2 \
     vidc.enc.dcvs.extra-buff-count=2
 
+# Configstore
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.surface_flinger.force_hwc_copy_for_virtual_displays=true \
+    ro.surface_flinger.max_frame_buffer_acquired_buffers=3
+
 # DRM
 PRODUCT_PROPERTY_OVERRIDES += \
     drm.service.enabled=true
@@ -103,7 +108,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.ui.hw=1 \
     persist.sys.wfd.virtual=0 \
     ro.opengles.version=196610 \
-    ro.sf.compbypass.enable=0
+    ro.sf.compbypass.enable=0 \
+    debug.hwui.use_buffer_age=false
 
 # FIFO: enable scheduling for UI and Render threads by default
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -111,12 +117,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Fling Velocity
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.min.fling_velocity=8000 \
-    ro.max.fling_velocity=12000 \
-    ro.min_pointer_dur=8 \
-    persist.sys.scrollingcache=3 \
-    touch.presure.scale=0.001 \
-    windowsmgr.max_events_per_sec=150
+    ro.min.fling_velocity=160 \
+    ro.max.fling_velocity=20000
 
 # FRP
 PRODUCT_PROPERTY_OVERRIDES += \

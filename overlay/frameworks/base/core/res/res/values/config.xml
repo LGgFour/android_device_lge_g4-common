@@ -285,14 +285,19 @@
         <item>"/system/framework/oat/arm64/services.vdex"</item>
         <item>"/system/framework/arm64/boot.oat"</item>
         <item>"/system/framework/boot.vdex"</item>
-        <item>"/system/framework/core-oj.jar"</item>
-        <item>"/system/framework/core-libart.jar"</item>
         <item>"/system/framework/arm64/boot-core-libart.oat"</item>
         <item>"/system/framework/boot-core-libart.vdex"</item>
-        <item>"/system/priv-app/SystemUI/SystemUI.apk"</item>
-        <item>"/data/dalvik-cache/arm64/system@priv-app@SystemUI@SystemUI.apk@classes.dex"</item>
-        <item>"/data/dalvik-cache/arm64/system@priv-app@SystemUI@SystemUI.apk@classes.vdex"</item>
         <item>"/system/lib64/libsurfaceflinger.so"</item>
+    </string-array>
+
+    <!-- List of files pinned by the Pinner Service with the apex boot image -->
+    <string-array translatable="false" name="config_apexBootImagePinnerServiceFiles">
+        <item>"/system/framework/framework.jar"</item>
+        <item>"/system/framework/services.jar"</item>
+        <item>"/apex/com.android.runtime/javalib/core-oj.jar"</item>
+        <item>"/apex/com.android.runtime/javalib/core-libart.jar"</item>
+        <item>"/apex/com.android.media/javalib/updatable-media.jar"</item>
+        <item>"/product/priv-app/SystemUI/SystemUI.apk"</item>
     </string-array>
 
     <!-- Keep chosen default camera app pinned in memory for faster launching -->
@@ -465,4 +470,13 @@
     <!-- Minimum color temperature, in Kelvin, supported by Night display. -->
     <integer name="config_nightDisplayColorTemperatureMin">1200</integer>
 
+    <!-- List of comma separated package names for which we the system will not show crash, ANR,
+         etc. dialogs. -->
+    <string name="config_appsNotReportingCrashes">com.google.android.tts</string>
+
+    <!-- The list of components which should be automatically disabled for a specific device. -->
+    <string-array name="config_deviceDisabledComponents" translatable="false">
+        <item>com.google.android.gms/com.google.android.gms.nearby.messages.service.NearbyMessagesService</item>
+        <item>com.google.android.gms/com.google.android.gms.nearby.discovery.service.DiscoveryService</item>
+    </string-array>
 </resources>

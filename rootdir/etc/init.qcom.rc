@@ -595,9 +595,6 @@ on post-fs-data
     # Make sure the default firmware is loaded
     write /sys/module/bcmdhd/parameters/firmware_path "/vendor/etc/firmware/fw_bcmdhd.bin"
 
-    # Create /data/time folder for time-services
-    mkdir /data/time/ 0700 system system
-
     mkdir /data/audio/ 0770 media audio
 
     # Create a folder for audio delta files
@@ -731,6 +728,12 @@ on property:bluetooth.startbtsnoop=true
 
 on property:bluetooth.startbtsnoop=false
     stop btsnoop
+
+service timekeep /vendor/bin/timekeep restore
+   class late_start
+   user root
+   group root
+   oneshot
 
 service ppd /vendor/bin/mm-pp-daemon
     class late_start
@@ -1028,12 +1031,6 @@ on property:sys.boot_completed=1
     swapon_all /vendor/etc/fstab.qcom
     write /dev/kmsg "Boot completed"
 
-service time_daemon /vendor/bin/time_daemon
-    class late_start
-    user root
-    group root diag
-    writepid /dev/cpuset/system-background/tasks
-
 service adsprpcd /vendor/bin/adsprpcd
     class main
     user media
@@ -1157,12 +1154,6 @@ on property:gsm.version.baseband=""
 
 on property:wlan.write.con_mode=*
     write /sys/module/wlan/parameters/con_mode ${wlan.write.con_mode}
-
-on property:init.svc.pulseon=stopped
-    # battery charging animation
-    write /sys/devices/soc.0/leds-qpnp-25/leds/red/trigger none
-    write /sys/devices/soc.0/leds-qpnp-25/leds/green/trigger battery-charging-blink-full-solid
-    write /sys/devices/soc.0/leds-qpnp-25/leds/blue/trigger none
 
 on property:apexd.status=ready
     mount none /system/etc/swcodec/ld.config.txt /apex/com.android.media.swcodec/etc/ld.config.txt bind
