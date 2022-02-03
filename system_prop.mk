@@ -281,3 +281,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Zygote preforking
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.device_config.runtime_native.usap_pool_enabled=true
+
+# sfX OTA server
+PRODUCT_PROPERTY_OVERRIDES += \
+    lineage.updater.uri=https://sfxota.binbash.rocks:8010/lineage/17.1/api/v1/{device}/{type}/{incr}
