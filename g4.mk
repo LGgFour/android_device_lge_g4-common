@@ -99,15 +99,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     Flashlight
 
-# Charger
-PRODUCT_PACKAGES += \
-    charger_res_images
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/ramdisk/sbin/healthd:root/sbin/healthd \
-    $(LOCAL_PATH)/ramdisk/res/images/charger/battery_scale.png:root/res/images/charger/battery_scale.png \
-    $(LOCAL_PATH)/ramdisk/res/images/charger/battery_fail.png:root/res/images/charger/battery_fail.png
-
 # Configstore
 PRODUCT_PACKAGES += \
     android.hardware.configstore@1.1-service
@@ -117,10 +108,6 @@ TARGET_PROVIDES_CONSUMERIR_HAL := true
 PRODUCT_PACKAGES += \
     android.hardware.ir@1.0-impl \
     consumerir.msm8992
-
-# CryptfsHW
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.cryptfshw@1.0-service-qti.qsee
 
 # Dex - Pre-opt SystemUI
 PRODUCT_DEXPREOPT_SPEED_APPS += \
@@ -311,6 +298,13 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/nfc/libnfc-nci.conf:system/vendor/etc/libnfc-nci.conf \
     $(LOCAL_PATH)/nfc/libnfc-nxp.conf:system/vendor/etc/libnfc-nxp.conf \
     $(LOCAL_PATH)/nfc/nfcee_access.xml:system/etc/nfcee_access.xml
+
+# Offline Charger
+PRODUCT_PACKAGES += \
+    charger_res_images
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/charger/charger:$(TARGET_COPY_OUT_VENDOR)/bin/charger
 
 # Trust
 PRODUCT_PACKAGES += \
