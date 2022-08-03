@@ -243,4 +243,4 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # OTA server
 PRODUCT_PROPERTY_OVERRIDES += \
-    lineage.updater.uri=http://sfxota.binbash.rocks:8009/e-os/pie/api/v1/{device}/{type}/{incr}
+    lineage.updater.uri=https://sfxota.binbash.rocks:8010/e-os/pie/api/v1/{device}/{type}/{incr}
