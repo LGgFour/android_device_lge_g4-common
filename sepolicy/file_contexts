@@ -61,8 +61,14 @@
 # Bluetooth
 /data/misc/bluedroid/bdaddr				u:object_r:bluetooth_data_file:s0
 
+# WiFi
+/data/misc/wifi/config                            	u:object_r:wifi_data_file:s0
+
 # adb
 /data/adb/modules					u:object_r:adb_data_file:s0
 
 # set baseband version
 /(vendor|system/vendor)/bin/init.baseband.sh		u:object_r:baseband_exec:s0
+
+# sfX debug
+/cache/debug(/.*)? 					u:object_r:boot_log_file:s0
