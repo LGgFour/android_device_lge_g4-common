@@ -470,7 +470,7 @@ PRODUCT_COPY_FILES += \
 
 # signing key (system) - will also be used for OTA verification
 # (added to system/etc/security/otacerts.zip in system.img)
-PRODUCT_OTA_PUBLIC_KEYS := user-keys/releasekey
+#PRODUCT_OTA_PUBLIC_KEYS := user-keys/releasekey
 
 # signing key (recovery) - will be used for ZIP verification during flashing in recovery
 # (added to system/etc/security/otacerts.zip in recovery.img)
