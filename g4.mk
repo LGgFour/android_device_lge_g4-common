@@ -70,7 +70,15 @@ PRODUCT_PACKAGES += \
     camera.device@1.0-impl \
     camera.device@3.2-impl \
     android.hardware.camera.provider@2.4-impl \
-    libqomx_core
+    libqomx_core \
+    Camera2
+
+# Enable camera EIS
+# eis.enable: enables electronic image stabilization
+# is_type: sets image stabilization type
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.camera.eis.enable=1 \
+    persist.camera.is_type=4
 
 # rootless torch tile workaround
 PRODUCT_PACKAGES += \
@@ -121,9 +129,11 @@ PRODUCT_PACKAGES += \
 
 # F-droid
 WITH_FDROID := true
+FDROID_EXTRA_REPOS := true
 PRODUCT_PACKAGES += \
     F-Droid \
-    FDroidPrivilegedExtension
+    F-DroidPrivilegedExtension \
+    additional_repos.xml
 
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(LOCAL_PATH)/config.fs
@@ -132,6 +142,7 @@ TARGET_FS_CONFIG_GEN := $(LOCAL_PATH)/config.fs
 PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl \
     android.hardware.gnss@1.0-service \
+    gps.msm8992 \
     quipc.conf
 
 PRODUCT_COPY_FILES += \
@@ -297,7 +308,6 @@ PRODUCT_PACKAGES += \
 # RIL
 PRODUCT_PACKAGES += \
     android.hardware.radio@1.0-impl \
-    android.hardware.radio.config@1.0-service \
     android.hardware.radio.deprecated@1.0-impl \
     android.hardware.radio.deprecated@1.0-service \
     librmnetctl \
@@ -336,7 +346,8 @@ PRODUCT_COPY_FILES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@1.0-impl
+    android.hardware.sensors@1.0-impl \
+    android.hardware.sensors@1.0-service
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/sensors/sensor_def_common.conf:system/etc/sensors/sensor_def_common.conf \
@@ -400,3 +411,6 @@ $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4339
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:/system/vendor/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini
+
+# Enable extendrom
+$(call inherit-product-if-exists, vendor/extendrom/config/common.mk)

@@ -17,7 +17,7 @@ BOARD_VENDOR := lge
 
 COMMON_PATH := device/lge/g4-common
 
-TARGET_SPECIFIC_HEADER_PATH := $(COMMON_PATH)/include
+TARGET_SPECIFIC_HEADER_PATH := $(COMMON_PATH)/include $(COMMON_PATH)/softap/sdk
 
 LLVM_ENABLE_THREADS := true
 
@@ -93,8 +93,14 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/g4-common/bluetooth
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
 TARGET_CAMERASERVICE_CLOSES_NATIVE_HANDLES := true
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+TARGET_USES_MEDIA_EXTENSIONS := true
 TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
     /system/vendor/bin/mm-qcamera-daemon=24
+
+# Dex - Pre-opt SystemUI
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    SystemUI
 
 # Display
 HAVE_ADRENO_SOURCE:= false
@@ -147,7 +153,7 @@ TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.selinux=enforcing
 BOARD_KERNEL_CMDLINE += console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom
-BOARD_KERNEL_CMDLINE += user_debug=31 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 msm_rtb.filter=0x37 boot_cpus=0-5 lge_monitor_thermal.enable=1
+BOARD_KERNEL_CMDLINE += user_debug=31 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 msm_rtb.filter=0x37 boot_cpus=0-5 lge_monitor_thermal.enable=1 fakebattery=enable
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_SEPARATED_DT := true
@@ -189,12 +195,14 @@ TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/input/lge_touch/tap2wake"
 TARGET_HAS_NO_WLAN_STATS := true
 TARGET_HAS_NO_POWER_STATS := true
 TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
+TARGET_USES_INTERACTION_BOOST := true
 
 # QCOM
 BOARD_USES_QCOM_HARDWARE := true
 BOARD_USES_QC_TIME_SERVICES := true
 
 # RIL
+BOARD_PROVIDES_LIBRIL := true
 TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
     /vendor/bin/hw/rild=27
 
@@ -212,8 +220,6 @@ SELINUX_IGNORE_NEVERALLOWS := true
 # Shims
 TARGET_LD_SHIM_LIBS := \
     /system/vendor/lib/libwvm.so|libshims_wvm.so \
-    /system/vendor/lib64/libcneapiclient.so|/system/vendor/lib64/libcne_shim.so \
-    /system/vendor/lib64/libril-qc-qmi-1.so|/system/vendor/lib64/rild_socket.so \
     /system/lib64/libmdmcutback.so|libqsap_shim.so \
     /system/lib/libshim_camera.so:/system/lib/libcamera_client.so|libshim_cameraclient.so \
     /system/vendor/lib/libmmcamera_stillmore_lib.so|/system/lib/libshim_cameraclient.so \

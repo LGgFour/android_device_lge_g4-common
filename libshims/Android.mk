@@ -14,29 +14,11 @@
 
 LOCAL_PATH := $(call my-dir)
 
-# LIBCNE SHIM
-include $(CLEAR_VARS)
-LOCAL_SRC_FILES := libcne_shim.cpp
-LOCAL_MODULE := libcne_shim
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-LOCAL_PROPRIETARY_MODULE := true
-LOCAL_CFLAGS_arm64 += -DLIBSHIMS_64BIT
-include $(BUILD_SHARED_LIBRARY)
-
-# RILD SOCKET SHIM
-include $(CLEAR_VARS)
-LOCAL_SRC_FILES := rild_socket.c
-LOCAL_MODULE := rild_socket
-LOCAL_MODULE_TAGS := optional
-LOCAL_PROPRIETARY_MODULE := true
-include $(BUILD_SHARED_LIBRARY)
-
 # QSAP
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := libqsap_shim.c
 LOCAL_SHARED_LIBRARIES := libqsap_sdk liblog
-LOCAL_C_INCLUDES := $(TOP)/system/qcom/softap/sdk
+LOCAL_C_INCLUDES := $(COMMON_PATH)/softap/sdk
 LOCAL_MODULE := libqsap_shim
 LOCAL_MODULE_TAGS := optional
 LOCAL_PROPRIETARY_MODULE := true
