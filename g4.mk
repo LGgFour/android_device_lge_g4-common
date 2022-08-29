@@ -25,12 +25,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.audio.service \
     android.hardware.audio@2.0-impl \
-    android.hardware.audio@5.0 \
-    android.hardware.audio@5.0-impl \
+    android.hardware.audio@6.0 \
+    android.hardware.audio@6.0-impl \
     android.hardware.audio.effect@2.0-impl \
-    android.hardware.audio.effect5.0 \
-    android.hardware.audio.effect@5.0-impl \
-    android.hardware.soundtrigger@2.0-impl \
+    android.hardware.audio.effect@6.0 \
+    android.hardware.audio.effect@6.0-impl \
+    android.hardware.soundtrigger@2.2-impl \
     libaudio-resampler \
     libqcompostprocbundle \
     libqcomvisualizer \
@@ -70,9 +70,16 @@ PRODUCT_COPY_FILES += \
 # Bluetooth
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl \
+    android.hardware.bluetooth@1.0-service \
     libbt-vendor \
     hwaddrs \
     libprotobuf-cpp-full
+
+# Bluetooth A2DP
+PRODUCT_PACKAGES += \
+  audio.a2dp.default \
+  android.hardware.bluetooth.a2dp@1.0-impl \
+  android.hardware.bluetooth.a2dp@1.0-service
 
 # Bootloader
 PRODUCT_PACKAGES += \
