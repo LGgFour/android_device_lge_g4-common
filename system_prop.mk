@@ -49,7 +49,7 @@ TARGET_BOOT_ANIMATION_RES := 1440
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
-    vendor.camera.hal1.packagelist=com.skype.raider,com.whatsapp,com.instagram.android \
+    vendor.camera.hal1.packagelist=com.skype.raider,com.instagram.android \
     ro.qc.sdk.camera.facialproc=false \
     ro.qc.sdk.gestures.camera=false \
     camera2.portability.force_api=1 \
@@ -66,7 +66,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Configstore
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.surface_flinger.force_hwc_copy_for_virtual_displays=true \
-    ro.surface_flinger.max_frame_buffer_acquired_buffers=3
+    ro.surface_flinger.has_wide_color_display=true
+    ro.surface_flinger.has_HDR_display=true
+    ro.surface_flinger.max_frame_buffer_acquired_buffers=3 \
+    ro.surface_flinger.max_virtual_display_dimension=2048 \
+    ro.surface_flinger.use_color_management=true
 
 # DRM
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -187,6 +191,16 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.min_freq_4=384000 \
     ro.vold.umsdirtyratio=50
 
+# Properties for Surfaceflinger
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    debug.sf.use_phase_offsets_as_durations=1 \
+    debug.sf.late.sf.duration=27600000 \
+    debug.sf.late.app.duration=27600000 \
+    debug.sf.early.sf.duration=27600000 \
+    debug.sf.early.app.duration=27600000 \
+    debug.sf.earlyGl.sf.duration=27600000 \
+    debug.sf.earlyGl.app.duration=27600000
+
 # Properties to improve rendering
     debug.composition.type=gpu \
     debug.cpurend.vsync=false \
@@ -202,13 +216,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.disable_hwc=0 \
     debug.sf.recomputecrop=0 \
     debug.sf.disable_backpressure=1 \
+    debug.sf.disable_client_composition_cache=1 \
     debug.sf.latch_unsignaled=1 \
+    ro.surface_flinger.protected_contents=true \
     dev.pm.dyn_samplingrate=1 \
     hw3d.force=1 \
     persist.hwc.ptor.enable=true \
     persist.sys.composition.type=gpu \
     ro.fb.mode=1 \
-    video.accelerate.hw=1
+    video.accelerate.hw=1 \
+    debug.hwui.renderer=skiagl \
+    renderthread.skia.reduceopstasksplitting=true \
+    debug.renderengine.backend=skiaglthreaded
 
 #Properties to improve gaming experiance
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -271,9 +290,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sys.sdcardfs=true
 
-# Fix graphical glitches on skiagl
-PRODUCT_PROPERTY_OVERRIDES += \
-    debug.hwui.renderer=opengl
+# UI Smoothening
+persist.service.lgospd.enable=0
+persist.service.pcsync.enable=0
 
 # WiFi Scan Interval (default = 15s)
 PRODUCT_PROPERTY_OVERRIDES += \
