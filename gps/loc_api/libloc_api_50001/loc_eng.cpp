@@ -2667,7 +2667,7 @@ int loc_eng_set_server_proxy(loc_eng_data_s_type &loc_eng_data,
     ***/
     const char* conf_supl_host = hostname;
     if (gps_conf.SUPL_HOST != NULL){
-	conf_supl_host = &gps_conf.SUPL_HOST[0];
+	conf_supl_host = &gps_conf.SUPL_HOST;
     }
     uint32_t conf_supl_port = port;
     if (gps_conf.SUPL_PORT != 0){
@@ -2675,13 +2675,13 @@ int loc_eng_set_server_proxy(loc_eng_data_s_type &loc_eng_data,
     }
 
     LOC_LOGV("save the address, type: %d, hostname: %s, port: %d",
-             (int) type, conf_supl_host, gps_conf.SUPL_PORT);
+             (int) type, conf_supl_host, conf_supl_port);
     switch (type)
     {
     case LOC_AGPS_SUPL_SERVER:
         strlcpy(loc_eng_data.supl_host_buf, conf_supl_host,
                 sizeof(loc_eng_data.supl_host_buf));
-        loc_eng_data.supl_port_buf = gps_conf.SUPL_PORT;
+        loc_eng_data.supl_port_buf = conf_supl_port;
         loc_eng_data.supl_host_set = 1;
         break;
     case LOC_AGPS_CDMA_PDE_SERVER:
