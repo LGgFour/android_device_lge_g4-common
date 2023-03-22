@@ -48,6 +48,8 @@ typedef struct loc_gps_cfg_s
     uint32_t       SUPL_VER;
     uint32_t       SUPL_MODE;
     uint32_t       SUPL_ES;
+    char*          SUPL_HOST;
+    uint32_t       SUPL_PORT;
     uint32_t       CAPABILITIES;
     uint32_t       LPP_PROFILE;
     uint32_t       XTRA_VERSION_CHECK;

@@ -94,6 +94,8 @@ unsigned int agpsStatus = 0;
 /* Parameter spec table */
 static const loc_param_s_type gps_conf_table[] =
 {
+  {"SUPL_HOST",                      &gps_conf.SUPL_HOST,                      NULL, 's'},
+  {"SUPL_PORT",                      &gps_conf.SUPL_PORT,                         0, 'n'},
   {"GPS_LOCK",                       &gps_conf.GPS_LOCK,                       NULL, 'n'},
   {"SUPL_VER",                       &gps_conf.SUPL_VER,                       NULL, 'n'},
   {"LPP_PROFILE",                    &gps_conf.LPP_PROFILE,                    NULL, 'n'},
@@ -2659,14 +2661,27 @@ int loc_eng_set_server_proxy(loc_eng_data_s_type &loc_eng_data,
     ENTRY_LOG_CALLFLOW();
     int ret_val = 0;
 
+    /***
+	bc android fucks this/me up let's hard code the overwrite
+	of SUPL_HOST and SUPL_PORT - IF set by gps.conf
+    ***/
+    const char* conf_supl_host = hostname;
+    if (gps_conf.SUPL_HOST != NULL){
+	conf_supl_host = &gps_conf.SUPL_HOST[0];
+    }
+    uint32_t conf_supl_port = port;
+    if (gps_conf.SUPL_PORT != 0){
+        conf_supl_port = gps_conf.SUPL_PORT;
+    }
+
     LOC_LOGV("save the address, type: %d, hostname: %s, port: %d",
-             (int) type, hostname, port);
+             (int) type, conf_supl_host, gps_conf.SUPL_PORT);
     switch (type)
     {
     case LOC_AGPS_SUPL_SERVER:
-        strlcpy(loc_eng_data.supl_host_buf, hostname,
+        strlcpy(loc_eng_data.supl_host_buf, conf_supl_host,
                 sizeof(loc_eng_data.supl_host_buf));
-        loc_eng_data.supl_port_buf = port;
+        loc_eng_data.supl_port_buf = gps_conf.SUPL_PORT;
         loc_eng_data.supl_host_set = 1;
         break;
     case LOC_AGPS_CDMA_PDE_SERVER:
