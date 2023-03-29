@@ -2670,7 +2670,6 @@ int loc_eng_set_server_proxy(loc_eng_data_s_type &loc_eng_data,
     char *conf_supl_host = (char *)malloc(31*(sizeof(char)));
     LOC_LOGV("AAAAAAAAAAAAAAAAAAAAAAAAAAAA - 1");
     strncpy(conf_supl_host, hostname, 30);
-// (char *)malloc(30 * sizeof(char));
     if (gps_conf.SUPL_HOST[0] != '\0'){
 	LOC_LOGV("AAAAAAAAAAAAAAAAAAAAAAAAAAAA - 2");
 	strncpy(conf_supl_host, gps_conf.SUPL_HOST, 30);
@@ -2724,9 +2723,9 @@ int loc_eng_set_server_proxy(loc_eng_data_s_type &loc_eng_data,
         loc_eng_data.supl_host_set = 1;
         break;
     case LOC_AGPS_CDMA_PDE_SERVER:
-        strlcpy(loc_eng_data.c2k_host_buf, hostname,
+        strlcpy(loc_eng_data.c2k_host_buf, conf_supl_host,
                 sizeof(loc_eng_data.c2k_host_buf));
-        loc_eng_data.c2k_port_buf = port;
+        loc_eng_data.c2k_port_buf = conf_supl_port;
         loc_eng_data.c2k_host_set = 1;
         break;
     default:
@@ -2735,7 +2734,7 @@ int loc_eng_set_server_proxy(loc_eng_data_s_type &loc_eng_data,
 
     if (NULL != loc_eng_data.adapter)
     {
-        ret_val = loc_eng_set_server(loc_eng_data, type, hostname, port);
+        ret_val = loc_eng_set_server(loc_eng_data, type, conf_supl_host, conf_supl_port);
     }
 
     EXIT_LOG(%d, ret_val);
