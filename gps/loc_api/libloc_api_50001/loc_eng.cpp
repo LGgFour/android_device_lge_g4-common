@@ -2667,11 +2667,13 @@ int loc_eng_set_server_proxy(loc_eng_data_s_type &loc_eng_data,
 	bc android fucks this/me up let's hard code the overwrite
 	of SUPL_HOST and SUPL_PORT - IF set by gps.conf
     ***/
-    char *conf_supl_host[30] = (char *)malloc(30 * sizeof(char));
+    char *conf_supl_host = (char *)malloc(31*(sizeof(char)));
     LOC_LOGV("AAAAAAAAAAAAAAAAAAAAAAAAAAAA - 1");
+    strncpy(conf_supl_host, hostname, 30);
+// (char *)malloc(30 * sizeof(char));
     if (gps_conf.SUPL_HOST[0] != '\0'){
 	LOC_LOGV("AAAAAAAAAAAAAAAAAAAAAAAAAAAA - 2");
-	conf_supl_host = &gps_conf.SUPL_HOST[0];
+	strncpy(conf_supl_host, gps_conf.SUPL_HOST, 30);
 	LOC_LOGV("AAAAAAAAAAAAAAAAAAAAAAAAAAAA - 3");
     }
     /** strncpy(conf_supl_host, hostname, 30);
