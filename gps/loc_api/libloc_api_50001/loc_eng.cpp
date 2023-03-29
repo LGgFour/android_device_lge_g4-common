@@ -46,6 +46,8 @@
 #include <time.h>
 #include <new>
 #include <LocEngAdapter.h>
+#include <typeinfo>
+#include <string.h>
 
 #include <cutils/sched_policy.h>
 #ifndef USE_GLIB
@@ -2665,17 +2667,52 @@ int loc_eng_set_server_proxy(loc_eng_data_s_type &loc_eng_data,
 	bc android fucks this/me up let's hard code the overwrite
 	of SUPL_HOST and SUPL_PORT - IF set by gps.conf
     ***/
-    const char* conf_supl_host = hostname;
-    if (gps_conf.SUPL_HOST != NULL){
-	conf_supl_host = &gps_conf.SUPL_HOST;
+    char *conf_supl_host[30] = (char *)malloc(30 * sizeof(char));
+    LOC_LOGV("AAAAAAAAAAAAAAAAAAAAAAAAAAAA - 1");
+    if (gps_conf.SUPL_HOST[0] != '\0'){
+	LOC_LOGV("AAAAAAAAAAAAAAAAAAAAAAAAAAAA - 2");
+	conf_supl_host = &gps_conf.SUPL_HOST[0];
+	LOC_LOGV("AAAAAAAAAAAAAAAAAAAAAAAAAAAA - 3");
     }
+    /** strncpy(conf_supl_host, hostname, 30);
+    if (gps_conf.SUPL_HOST != NULL) {
+	strncpy(conf_supl_host, gps_conf.SUPL_HOST, 30);
+    }
+    **/
+    LOC_LOGV("AAAAAAAAAAAAAAAAAAAAAAAAAAAA - 4");
+
+    /**const char* conf_supl_host = hostname;
+    if (gps_conf.SUPL_HOST != NULL) {
+	//conf_supl_host = gps_conf.SUPL_HOST;
+	for (int i = 0; i < 31; i++) {
+	    if (conf_supl_host[i] == '\0') {
+		LOC_LOGV("Null found at %d", i);
+		break;
+	    } else {
+		LOC_LOGV("String length more than 30!");
+	    }
+	}
+    }
+    if (gps_conf.SUPL_HOST != NULL){
+	//conf_supl_host = gps_conf.SUPL_HOST;
+	LOC_LOGV("SUPL_HOST is - NOT - NULL!!");
+    } else {
+	LOC_LOGV("SUPL_HOST is NULL!!");
+    }**/
     uint32_t conf_supl_port = port;
     if (gps_conf.SUPL_PORT != 0){
         conf_supl_port = gps_conf.SUPL_PORT;
+	LOC_LOGV("SUPL_PORT is - NOT - 0!!");
+    }else {
+        LOC_LOGV("SUPL_PORT is 0!!");
     }
 
-    LOC_LOGV("save the address, type: %d, hostname: %s, port: %d",
-             (int) type, conf_supl_host, conf_supl_port);
+    //LOC_LOGV("supl hostname type: %s", typeid(conf_supl_host).name());
+    //LOC_LOGV("supl port type: %s", typeid(conf_supl_port).name());
+    LOC_LOGV("supl hostname: %s", conf_supl_host);
+    LOC_LOGV("supl port: %d", conf_supl_port);
+    //LOC_LOGV("save the address, type: %d, hostname: %s, port: %d",
+    //         (int) type, conf_supl_host, conf_supl_port);
     switch (type)
     {
     case LOC_AGPS_SUPL_SERVER:
@@ -2824,6 +2861,8 @@ void loc_eng_configuration_update (loc_eng_data_s_type &loc_eng_data,
             adapter->setGpsLockMsg(adapter->getPowerVote() ? 0 : gps_conf.GPS_LOCK);
         }
 
+        //gps_conf_tmp.SUPL_HOST = gps_conf.SUPL_HOST;
+        //gps_conf_tmp.SUPL_PORT = gps_conf.SUPL_PORT;
         gps_conf_tmp.SUPL_VER = gps_conf.SUPL_VER;
         gps_conf_tmp.LPP_PROFILE = gps_conf.LPP_PROFILE;
         gps_conf_tmp.A_GLONASS_POS_PROTOCOL_SELECT = gps_conf.A_GLONASS_POS_PROTOCOL_SELECT;
