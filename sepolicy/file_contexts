@@ -69,3 +69,6 @@
 
 # set baseband version
 /(vendor|system/vendor)/bin/init.baseband.sh		u:object_r:baseband_exec:s0
+
+# wrild
+/(vendor|system/vendor)/bin/wrild.sh                     u:object_r:wrild_exec:s0
