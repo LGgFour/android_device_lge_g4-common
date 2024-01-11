@@ -3,7 +3,8 @@ allow vold vold_data:dir rw_dir_perms;
 allow vold vold_data:file { rw_file_perms create_file_perms };
 allow vold pstorefs:filesystem unmount;
 
-allow vold block_device:blk_file { getattr read write };
+# required for FDE encryption
+allow vold block_device:blk_file { getattr read write open };
 
 allow vold cache_block_device:blk_file getattr;
 allow vold modem_efs_partition_device:blk_file getattr;
