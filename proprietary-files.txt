@@ -5,7 +5,6 @@ bin/hci_qcomm_init
 bin/loc_launcher
 bin/lowi-server
 bin/qseecom_sample_client
-bin/radish
 bin/tftp_server
 bin/xtwifi-client
 bin/xtwifi-inet-agent
