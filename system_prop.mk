@@ -99,7 +99,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.boot-dex2oat-threads=4 \
     dalvik.vm.dex2oat-threads=4 \
     dalvik.vm.image-dex2oat-threads=4 \
-    dalvik.vm.image-dex2oat-filter=speed \
     pm.dexopt.first-boot=quicken \
     pm.dexopt.bg-dexopt=everything \
     pm.dexopt.boot=verify \
