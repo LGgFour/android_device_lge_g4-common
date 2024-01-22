@@ -252,10 +252,10 @@
     </string-array>
 
     <!-- Keep chosen default camera app pinned in memory for faster launching -->
-    <bool name="config_pinnerCameraApp">true</bool>
+    <bool name="config_pinnerCameraApp">false</bool>
 
     <!-- Should the pinner service pin the Home application? -->
-    <bool name="config_pinnerHomeApp">true</bool>
+    <bool name="config_pinnerHomeApp">false</bool>
 
     <!-- Setting this true forces the headset jack switches to use the/dev/input/event subsystem
          rather than the uevent framework. -->
@@ -443,16 +443,6 @@
     <!-- Minimum color temperature, in Kelvin, supported by Night display. -->
     <integer name="config_nightDisplayColorTemperatureMin">1200</integer>
 
-    <!-- List of comma separated package names for which we the system will not show crash, ANR,
-         etc. dialogs. -->
-    <string name="config_appsNotReportingCrashes">com.google.android.tts</string>
-
-    <!-- The list of components which should be automatically disabled for a specific device. -->
-    <string-array name="config_deviceDisabledComponents" translatable="false">
-        <item>com.google.android.gms/com.google.android.gms.nearby.messages.service.NearbyMessagesService</item>
-        <item>com.google.android.gms/com.google.android.gms.nearby.discovery.service.DiscoveryService</item>
-    </string-array>
-
     <!-- Whether to allow process with 
 media UID to access CameraServiceProxy -->
     <bool name="config_allowMediaUidForCameraServiceProxy">true</bool>
@@ -508,5 +498,43 @@ media UID to access CameraServiceProxy -->
          Choices are: FULL, NORMAL, OFF. 
 -->
     <string name="db_wal_sync_mode" translatable="false">OFF</string>
-</resources>
 
+    <!-- Disable intrusive gms components. -->
+    <string-array name="config_deviceDisabledComponents" translatable="false">
+        <item>com.google.android.gms/com.google.android.gms.nearby.discovery.service.DiscoveryService</item>
+        <item>com.google.android.gms/com.google.android.gms.nearby.messages.service.NearbyMessagesService</item>
+        <item>com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver</item>
+        <item>com.google.android.gms/.stats.service.DropBoxEntryAddedReceiver</item>
+    </string-array>
+
+    <!-- True if the device should block turning display on at boot until wallpaper is ready -->
+    <bool name="config_checkWallpaperAtBoot">false</bool>
+
+    <!-- Whether or not enable the different threshold based on the durations of
+         certain event type.
+    -->
+    <bool name="config_bg_current_drain_event_duration_based_threshold_enabled">true</bool>
+
+    <!-- The behavior when the system detects it has abusive current drains, whether or not to
+         move the app to the restricted standby bucket level.
+         True - we'll move the app to restricted standby bucket as long as its bg battery usage
+         goes beyond the threshold, False - we'll not move it.
+         Note: This should be only enabled on devices with high confidence on power measurement.
+    -->
+    <bool name="config_bg_current_drain_auto_restrict_abusive_apps">true</bool>
+
+    <!-- The behavior for an app with a FGS and its notification is still showing, when the system
+         detects it's abusive and should be put into bg restricted level. True - we'll
+         show the prompt to user, False - we'll not show it.
+    -->
+    <bool name="config_bg_prompt_fgs_with_noti_to_bg_restricted">true</bool>
+
+    <!-- The behavior when the system detects it's abusive, should the system prompt the user
+         to put it into the bg restricted level.
+         True - we'll show the prompt to user, False - we'll not show it.
+    -->
+    <bool name="config_bg_prompt_abusive_apps_to_bg_restricted">true</bool>
+
+    <!-- Suppress Intent Filter Verification Service crashes and System UI ANRs (both AOSP bugs) -->
+    <string translatable="false" name="config_appsNotReportingCrashes">com.android.statementservice,com.android.systemui,com.google.android.tts</string>
+</resources>

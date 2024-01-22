@@ -166,6 +166,10 @@ PRODUCT_PACKAGES += \
     libqdutils \
     libqservice
 
+# Doze mode
+PRODUCT_PACKAGES += \
+    G4Doze
+
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl
@@ -234,7 +238,8 @@ PRODUCT_PACKAGES += \
     sysctl.rc \
     sysctl.conf \
     pulse.sh \
-    init.safailnet.rc
+    init.safailnet.rc \
+    set_tasks.sh
 
 PRODUCT_PACKAGES_ENG += \
     fstab.qcom \
@@ -256,7 +261,12 @@ PRODUCT_PACKAGES_ENG += \
     sysctl.rc \
     sysctl.conf \
     pulse.sh \
-    init.safailnet.rc
+    init.safailnet.rc \
+    set_tasks.sh
+
+# IO Cgroups
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.iocgrp.config=1
 
 # IPA
 PRODUCT_PACKAGES += \
@@ -434,8 +444,7 @@ PRODUCT_COPY_FILES += \
 # Sensors
 PRODUCT_PACKAGES += \
     android.frameworks.sensorservice@1.0 \
-    android.hardware.sensors@1.0-impl \
-    android.hardware.sensors@1.0-service
+    android.hardware.sensors@1.0-impl
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/sensors/sensor_def_common.conf:system/etc/sensors/sensor_def_common.conf \

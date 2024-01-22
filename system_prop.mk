@@ -72,15 +72,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.charger.enable_suspend=true
 
-# Configstore
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.surface_flinger.force_hwc_copy_for_virtual_displays=true \
-    ro.surface_flinger.has_wide_color_display=true
-    ro.surface_flinger.has_HDR_display=true
-    ro.surface_flinger.max_frame_buffer_acquired_buffers=3 \
-    ro.surface_flinger.max_virtual_display_dimension=2048 \
-    ro.surface_flinger.use_color_management=true
-
 # DRM
 PRODUCT_PROPERTY_OVERRIDES += \
     drm.service.enabled=true
@@ -88,11 +79,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Dalvik
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapstartsize=8m \
-    dalvik.vm.heapgrowthlimit=256m \
+    dalvik.vm.heapgrowthlimit=192m \
     dalvik.vm.heapsize=512m \
-    dalvik.vm.heaptargetutilization=0.50 \
-    dalvik.vm.heapminfree=1m \
-    dalvik.vm.heapmaxfree=8m
+    dalvik.vm.heaptargetutilization=0.7 \
+    dalvik.vm.heapminfree=4m \
+    dalvik.vm.heapmaxfree=8m \
+    dalvik.vm.dex2oat64.enabled=true
 
 # Dexopt (try not to use big cores during dexopt)
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -124,9 +116,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.metadata_dynfps.disable=true \
     persist.sys.ui.hw=1 \
     persist.sys.wfd.virtual=0 \
+    ro.hardware.egl=adreno \
     ro.opengles.version=196610 \
-    ro.sf.compbypass.enable=0 \
-    debug.hwui.use_buffer_age=false
+    ro.sf.compbypass.enable=0
 
 # Fling Velocity
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -169,12 +161,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     net.dns1=1.1.1.1\
     net.dns2=9.9.9.9
 
-# LMKD
+#Logcat - increase log verbosity
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.lmk.critical_upgrade=true \
-	ro.lmk.upgrade_pressure=40 \
-	ro.lmk.downgrade_pressure=60 \
-	ro.lmk.use_psi=false
+    sys.init_log_level=7
 
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -188,13 +177,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.camera.cpp.duplication=false \
     ro.config.avoid_gfx_accel=true
 
-# Memory Optimizations
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.qti.am.reschedule_service=true \
-    ro.vendor.qti.sys.fw.bservice_enable=true \
-    ro.vendor.qti.sys.fw.bservice_age=5000 \
-    ro.vendor.qti.sys.fw.bservice_limit=5
-
 # Perf
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.dpm.feature=1 \
@@ -204,82 +186,54 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=libqti-perfd-client.so \
     ro.min_freq_0=384000 \
     ro.min_freq_4=384000 \
+    ro.vendor.qti.sys.fw.bg_apps_limit=16 \
     ro.vold.umsdirtyratio=50 \
     vendor.perf.gestureflingboost.enable=true
 
 # Properties for Surfaceflinger
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    debug.sf.use_phase_offsets_as_durations=1 \
-    debug.sf.late.sf.duration=27600000 \
-    debug.sf.late.app.duration=27600000 \
-    debug.sf.early.sf.duration=27600000 \
-    debug.sf.early.app.duration=27600000 \
-    debug.sf.earlyGl.sf.duration=27600000 \
-    debug.sf.earlyGl.app.duration=27600000
+    ro.surface_flinger.max_virtual_display_dimension=2048 \
+    ro.surface_flinger.max_frame_buffer_acquired_buffers=3 \
+    ro.surface_flinger.force_hwc_copy_for_virtual_displays=true \
+    ro.surface_flinger.use_color_management=false \
+    ro.surface_flinger.has_HDR_display=false \
+    ro.surface_flinger.has_wide_color_display=false \
+    ro.surface_flinger.enable_layer_caching=false \
+    ro.surface_flinger.start_graphics_allocator_service=true \
+    ro.surface_flinger.use_context_priority=true \
+    debug.sf.enable_planner_prediction=false \
+    debug.sf.disable_client_composition_cache=1 \
+    debug.sf.early_phase_offset_ns=11600000 \
+    debug.sf.early_app_phase_offset_ns=11600000 \
+    debug.sf.early_gl_phase_offset_ns=3000000 \
+    debug.sf.early_gl_app_phase_offset_ns=15000000 \
+    debug.sf.phase_offset_threshold_for_next_vsync_ns=11600000 \
+    debug.sf.layer_caching_active_layer_timeout_ms=1000 \
+    ro.surface_flinger.vsync_event_phase_offset_ns=2000000 \
+    ro.surface_flinger.vsync_sf_event_phase_offset_ns=6000000
 
 # Properties to improve rendering
-    debug.composition.type=gpu \
     debug.cpurend.vsync=false \
     debug.enable.sglscale=1 \
     debug.enabletr=true \
-    debug.egl.profiler=1 \
     debug.egl.hw=1 \
     debug.enabletr=true \
     debug.overlayui.enable=1 \
-    debug.performance.tuning=1 \
-    debug.qctwa.preservebuf=1 \
     debug.sf.hw=1 \
-    debug.sf.disable_hwc=0 \
+    debug.sf.enable_gl_backpressure=1 \
     debug.sf.recomputecrop=0 \
-    debug.sf.disable_client_composition_cache=1 \
+    ro.surface_flinger.enable_layer_caching=false \
+    debug.sf.enable_planner_prediction=false \
     debug.sf.latch_unsignaled=0 \
-    debug.sf.auto_latch_unsignaled=false \
+    debug.sf.disable_client_composition_cache=1 \
+    debug.sf.auto_latch_unsignaled=true \
     dev.pm.dyn_samplingrate=1 \
-    hw3d.force=1 \
     persist.hwc.ptor.enable=true \
     persist.sys.composition.type=gpu \
     ro.fb.mode=1 \
     video.accelerate.hw=1 \
-    debug.hwui.renderer=skiagl \
-    renderthread.skia.reduceopstasksplitting=true \
-    debug.renderengine.backend=skiaglthreaded \
-    debug.hwui.skia_atrace_enabled=false \
-    debug.sf.enable_egl_image_tracker=1 \
-    ro.vendor.perf.scroll_opt=true \
-    ro.hwui.render_ahead=1 \
-    ro.surface_flinger.set_idle_timer_ms=80 \
-    ro.surface_flinger.set_touch_timer_ms=200 \
-    ro.surface_flinger.set_display_power_timer_ms=1000 \
-    ro.surface_flinger.use_content_detection_for_refresh_rate=true \
-    debug.sf.enable_transaction_tracing=false
-
-#Properties to improve gaming experiance
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.NV_FPSLIMIT=60 \
-    persist.sys.NV_POWERMODE=1 \
-    persist.sys.NV_PROFVER=15 \
-    persist.sys.NV_STEREOCTRL=0 \
-    persist.sys.NV_STEREOSEPCHG=0 \
-    persist.sys.NV_STEREOSEP=20 \
-    persist.sys.purgeable_assets=1 \
-    ro.media.dec.jpeg.memcap=8000000 \
-    ro.media.enc.hprof.vid.bps=8000000 \
-    ro.media.dec.aud.wma.enabled=1 \
-    ro.media.dec.vid.wmv.enabled=1 \
-    ro.media.cam.preview.fps=0 \
-    ro.media.codec_priority_for_thumb=so \
-    debug.egl.force_msaa=1
-
-# Ram Management
-ro.config.fha_enable=true
-ro.sys.fw.bg_apps_limit=32
-ro.config.dha_cached_max=16
-ro.config.dha_empty_max=42
-ro.config.dha_empty_init=32
-ro.config.dha_lmk_scale=0.545
-ro.config.dha_th_rate=2.3
-ro.config.sdha_apps_bg_max=32
-ro.config.sdha_apps_bg_min=8
+    debug.hwui.renderer=opengl \
+    ro.hwui.render_ahead=10
 
 # RIL
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -334,3 +288,7 @@ ro.vndk.version=current
 # WiFi Scan Interval (default = 15s)
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.supplicant_scan_interval=600
+
+# Zygote
+PRODUCT_PROPERTY_OVERRIDES += \
+    zygote.critical_window.minute=10
