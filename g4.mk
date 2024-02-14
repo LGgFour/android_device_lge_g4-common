@@ -506,5 +506,12 @@ $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4339
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:/system/vendor/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini
 
+# see: https://github.com/AXP-OS/build/wiki/Device-Encryption
+# FBEv1 with adoptable storage
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.crypto.volume.options=aes-256-xts:aes-256-cts:v1 \
+    ro.crypto.volume.contents_mode=aes-256-xts \
+    ro.crypto.volume.filenames_mode=aes-256-cts
+
 # enable AXP.OS vendor                                                                                                                                                                                                                 
 $(call inherit-product, vendor/axp/config/common.mk)
