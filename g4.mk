@@ -139,6 +139,13 @@ PRODUCT_COPY_FILES += \
     system/core/libprocessgroup/profiles/cgroups_28.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json \
     system/core/libprocessgroup/profiles/task_profiles_28.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json
 
+# see: https://github.com/AXP-OS/build/wiki/Device-Encryption
+# FBEv1 with adoptable storage
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.crypto.volume.options=aes-256-xts:aes-256-cts:v1 \
+    ro.crypto.volume.contents_mode=aes-256-xts \
+    ro.crypto.volume.filenames_mode=aes-256-cts
+
 # Dex - Pre-opt SystemUI
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     Settings \
