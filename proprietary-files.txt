@@ -42,6 +42,7 @@ lib/libalmcascore.so|87bb3267a5e5295fd801ec4e09609a734005982d
 lib/libalmcaswrap.so|257e0a89145b7838ba4d89ba0358f9f1c9ababf0
 lib/libaptXHD_encoder.so|974c486e4ca03faa0713553d9dfe2995ac93e01c
 lib/libaptX_encoder.so|984739a0bc968e18f75ced205733fe3f51c2d4f0
+lib/libcir_driver.so|4c0d9199e4459d0073c7875c6572945d0d0b2971
 lib/liblgkm.so|b0136b2448b53cf70bee45dc19f95fc32959b88f
 lib/liblgmabl.so|3eba6761bc16e0be7f8003a9b2a6009f45339f81
 lib/libmdmcutback.so|078a0daada5bdb8dd0c0f174cf72feb29704f8f9
@@ -60,6 +61,7 @@ lib64/hw/lgkm.msm8992.so|f2b0f338f6e48fc300f752175ecf9b30dbc82ff7
 lib64/hw/sensors.msm8992.so|16892c636735b114587ebd9d52cceb29093f5bed
 lib64/libaptXHD_encoder.so|90f47f10af28b3ead143200cb4370b847c513127
 lib64/libaptX_encoder.so|0cebad28afcf29f931bdc2d24fce2730dc882ecf
+lib64/libcir_driver.so|5b6b2955e5c1fbb379ea616633f035812451b9f1
 lib64/liblgkm.so|11c985f2139d110e48bff6060eab38a2f57cc8aa
 lib64/liblgmabl.so|1621df57bc0a9494d04e83c7ef2fbecb0e846983
 lib64/libmdmcutback.so|d20c262e9626b8c3ec086cf5b174e43d30302cb8
