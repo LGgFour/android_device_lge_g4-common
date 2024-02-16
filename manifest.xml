@@ -357,7 +357,9 @@
     </hal>
     <hal format="aidl">
         <name>android.system.keystore2</name>
-        <version>1</version>
-        <fqname>IKeystoreService/default</fqname>
+        <interface>
+            <name>IKeystoreService</name>
+            <instance>default</instance>
+        </interface>
     </hal>
 </manifest>
