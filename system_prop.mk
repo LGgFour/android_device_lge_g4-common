@@ -1,6 +1,5 @@
 #ADB Debugging
 persist.sys.usb.config=mtp,adb
-ro.adb.secure=0
 ro.debuggable=1
 
 # Audio
@@ -51,11 +50,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 ro.surface_flinger.supports_background_blur=0
 ro.sf.blurs_are_expensive=0
 ro.launcher.blur.appLaunch=0
-
-# Boot animation
-TARGET_SCREEN_HEIGHT := 2560
-TARGET_SCREEN_WIDTH := 1440
-TARGET_BOOT_ANIMATION_RES := 1440
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -187,7 +181,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Properties for Surfaceflinger
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.surface_flinger.max_virtual_display_dimension=2048 \
-    ro.surface_flinger.max_frame_buffer_acquired_buffers=3 \
+    ro.surface_flinger.max_frame_buffer_acquired_buffers=1 \
     ro.surface_flinger.force_hwc_copy_for_virtual_displays=true \
     ro.surface_flinger.use_color_management=false \
     ro.surface_flinger.has_HDR_display=false \
@@ -216,7 +210,9 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     debug.sf.hw=1 \
     debug.sf.enable_gl_backpressure=1 \
     debug.sf.recomputecrop=0 \
-    debug.sf.latch_unsignaled=0 \
+    debug.sf.latch_unsignaled=1 \
+    debug.sf.auto_latch_unsignaled=0 \
+    debug.sf.disable_client_composition_cache=1 \
     dev.pm.dyn_samplingrate=1 \
     persist.hwc.ptor.enable=true \
     persist.sys.composition.type=gpu \
@@ -254,6 +250,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Security patch level
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.build.security_patch=2017-07-01
+
+# RIL Powersaving
+    persist.radio.add_power_save=1 \
+    pm.sleep_mode=1 \
+    ro.ril.disable.power.collapse=0 \
+    ro.ril.fast.dormancy.rule=1 \
+    ro.ril.fast.dormancy.timeout=3 \
+    ro.mot.eri.losalert.delay=1000
 
 # Sensors
 PRODUCT_PROPERTY_OVERRIDES += \
