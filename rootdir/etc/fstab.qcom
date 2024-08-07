@@ -26,8 +26,13 @@
 /dev/block/bootdevice/by-name/sns          /sns            ext4    nosuid,nodev,barrier=1,noatime,noauto_da_alloc,errors=continue,user_xattr      wait,notrim,check,latemount
 /dev/block/bootdevice/by-name/drm          /persist-lg     ext4    nosuid,nodev,barrier=1,noatime,noauto_da_alloc,errors=continue,user_xattr      wait,notrim,check,latemount
 /dev/block/bootdevice/by-name/mpt          /mpt            ext4    nosuid,nodev,barrier=1,noatime,noauto_da_alloc,errors=continue,user_xattr      wait,notrim,check,latemount
-/dev/block/bootdevice/by-name/grow         /misc           emmc    defaults                                                            defaults
 
+# definitons required but not containing a regular file system
+/dev/block/bootdevice/by-name/grow         /misc           emmc    defaults                                                            defaults
+/dev/block/bootdevice/by-name/persistent   /persistent     emmc    defaults                                                            defaults
+/dev/block/bootdevice/by-name/boot         /boot           emmc    defaults                                                            recoveryonly
+/dev/block/bootdevice/by-name/recovery     /recovery       emmc    defaults                                                            recoveryonly
+ 
 ### NOTE:
 # /cust + /carrier are handled within device/lge/g4 by a condition depending on the device model
 ###
