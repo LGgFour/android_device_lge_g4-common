@@ -59,8 +59,7 @@ on early-init
     chmod 0666 /dev/stune/foreground/tasks
 
 on early-fs
-    symlink /dev/block/platform/soc.0/${ro.boot.bootdevice} /dev/block/bootdevice
-    mount_all fstab.qcom
+    mount_all fstab.qcom --early
     chown root:root /dev/block/mmcblk0p35
     chmod 666 /dev/block/mmcblk0p35
 
@@ -80,8 +79,9 @@ on early-fs
 #SSD_DISP end
 
 on fs
-    wait /dev/block/platform/soc.0/${ro.boot.bootdevice}
-    symlink /dev/block/platform/soc.0/${ro.boot.bootdevice} /dev/block/bootdevice
+    mount_all fstab.qcom --late
+
+on late-fs
     mount_all fstab.qcom
 
 on init
@@ -97,7 +97,7 @@ on init
 
     # Start qseecomd early as we mount /system early
     # vold needs keymaster which needs qseecomd
-    #start qseecomd
+    start qseecomd
     # busy loop to wait for qseecomd started
     #exec - root root system -- /system/vendor/bin/init.qcom.qseecomd.sh
 
