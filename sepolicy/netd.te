@@ -1,0 +1,2 @@
+# required, otherwise camera app will not even open
+allow netd sysfs:file { open write };

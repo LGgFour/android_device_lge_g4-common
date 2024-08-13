@@ -11,3 +11,7 @@ allow mm-qcamerad sensors_socket:sock_file read;
 allow mm-qcamerad { hal_camera_default mediacodec }:fd use;
 allow mm-qcamerad ion_device:chr_file r_file_perms;
 allow mm-qcamerad hwbinder_device:chr_file rw_file_perms;
+
+allow mm-qcamerad camera_prop:file { getattr open read };
+
+allow mm-qcamerad node:tcp_socket node_bind;

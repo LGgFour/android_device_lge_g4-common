@@ -1,1 +1,2 @@
-allow installd flashlight_app_data_file:dir { getattr open read relabelto setattr rmdir search remove_name create };
+allow installd flashlight_app_data_file:dir { getattr open read relabelto setattr rmdir search remove_name create relabelfrom };
+allow installd system_data_file:dir relabelto;
