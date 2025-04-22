@@ -258,3 +258,7 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # inherit from the proprietary version
 -include vendor/lge/g4-common/BoardConfigVendor.mk
+
+# even though we include vendor/axp/config/common.mk we need to include AXP's own BoardConfig
+# (after the above definitions & includes), too so we we can make use of the conditions within
+include vendor/axp/BoardConfigVendor.mk
