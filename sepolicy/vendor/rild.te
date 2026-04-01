@@ -36,3 +36,5 @@ allow rild system_data_file:dir { open read remove_name };
 allow rild system_data_file:file { ioctl lock setattr unlink };
 
 allow rild qmuxd:unix_stream_socket connectto;
+
+allow rild diag_device:chr_file { read write ioctl open };
