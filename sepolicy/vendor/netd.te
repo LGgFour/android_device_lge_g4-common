@@ -1,1 +1,2 @@
 allow netd device:file { open write };
+allow netd sysfs:file { open write };

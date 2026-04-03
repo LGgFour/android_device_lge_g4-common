@@ -3,3 +3,5 @@ allow qti sysfs:file { open read };
 #type qti_exec, exec_type, file_type;
 #init_daemon_domain(qti)
 allow qti self:socket { create ioctl read };
+
+allow qti diag_device:chr_file { read write };

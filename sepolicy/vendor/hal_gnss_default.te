@@ -1,1 +1,4 @@
 allow hal_gnss_default vndbinder_device:chr_file { ioctl open read write };
+
+# also required to get modem out of reset, so rild!
+allow hal_gnss_default ssr_device:chr_file { open read };

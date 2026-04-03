@@ -1,5 +1,7 @@
 allow mediaserver socket_device:sock_file write;
 allow mediaserver thermal-engine:unix_stream_socket connectto;
 
+allow mediaserver exported_camera_prop:file { open read };
+
 # crucial important to start camera activity!
 allow mediaserver camera_data_file:dir search;

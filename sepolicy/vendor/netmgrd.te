@@ -18,3 +18,5 @@ allow netmgrd servicemanager:binder call;
 allow netmgrd system_file:file { execute_no_trans lock };
 
 allow netmgrd self:capability sys_module;
+
+allow netmgrd diag_device:chr_file { ioctl open read write };
