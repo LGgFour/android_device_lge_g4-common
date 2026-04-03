@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # create_multi_surface_image.sh
+# source: https://xdaforums.com/t/battery-charging-animation-boot-how-to-change-the-battery-animation.1609059/post-66575756
 #
 # Tool to convert multiple PNG images into a single "Multi Surface Image"
 # supported by Android 6.0 as a animated boot charging

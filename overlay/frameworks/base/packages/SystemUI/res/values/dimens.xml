@@ -20,4 +20,7 @@
     <dimen name="self_collapse_velocity">4000dp</dimen>
     <dimen name="fling_gesture_max_x_velocity">1500dp</dimen>
     <dimen name="fling_gesture_max_output_velocity">6000dp</dimen>
+
+    <!-- The text size for battery level -->
+    <dimen name="battery_level_text_size">40sp</dimen>
 </resources>

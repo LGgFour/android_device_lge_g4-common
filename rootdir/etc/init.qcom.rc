@@ -1123,7 +1123,7 @@ service adsprpcd /vendor/bin/adsprpcd
     group media
     writepid /dev/cpuset/system-background/tasks
 
-service charger /vendor/bin/healthd -c
+service charger /system/bin/healthd -c
     class charger
     group log system graphics
     capabilities SYS_BOOT
