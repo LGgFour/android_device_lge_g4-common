@@ -66,7 +66,6 @@ define(`wrild_dont_audit', `{
     hal_thermal_default
     hal_usb_default
     hal_wifi_default
-    hal_wifi_offload_default
     healthd
     hwservicemanager
     imscm
@@ -85,8 +84,8 @@ define(`wrild_dont_audit', `{
     mediaprovider
     mediametrics
     mediaserver
+    network_stack
     netd
-    perfprofd
     platform_app
     priv_app
     qmuxd
@@ -107,13 +106,14 @@ define(`wrild_dont_audit', `{
     untrusted_app
     untrusted_app_25
     untrusted_app_27
+    untrusted_app_29
     vendor_init
-    vendor_per_mgr
     vndservicemanager
     vold
     wificond
     zygote
 }')
 
-#dontaudit wrild wrild_dont_audit:{ file dir } { read getattr };
-#dontaudit wrild wrild_dont_audit:{ dir } { search };
+# enable hiding unwanted wrild output defined above
+dontaudit wrild wrild_dont_audit:{ file dir } { read getattr };
+dontaudit wrild wrild_dont_audit:{ dir } { search };
