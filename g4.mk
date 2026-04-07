@@ -348,7 +348,8 @@ PRODUCT_PACKAGES += \
     charger_res_images
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/charger/healthd:$(TARGET_COPY_OUT_SYSTEM)/bin/healthd
+    $(LOCAL_PATH)/charger/healthd:$(TARGET_COPY_OUT_SYSTEM)/bin/healthd \
+    $(LOCAL_PATH)/charger/font.png:$(TARGET_COPY_OUT_ROOT)/res/images/font.png
 
 # Trust
 PRODUCT_PACKAGES += \
